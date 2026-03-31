@@ -6,45 +6,42 @@ const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
   component: Toggle,
   tags: ["autodocs"],
+  args: {
+    label: "Notifications",
+    checked: false,
+    disabled: false,
+    size: "md",
+  },
+  argTypes: {
+    label: {
+      control: "text",
+      description: "Text label next to the toggle",
+      table: { category: "Content" },
+    },
+    checked: {
+      control: "boolean",
+      description: "Toggle on/off state",
+      table: { category: "State" },
+    },
+    disabled: {
+      control: "boolean",
+      description: "Disable the toggle",
+      table: { category: "State" },
+    },
+    size: {
+      control: "inline-radio",
+      options: ["sm", "md", "lg"],
+      description: "Toggle size",
+      table: { category: "Appearance" },
+    },
+    onChange: { action: "toggled", table: { category: "Events" } },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Toggle>;
 
-export const Default: Story = {
-  args: {
-    label: "Notifications",
-  },
-};
-
-export const Checked: Story = {
-  args: {
-    label: "Dark mode",
-    checked: true,
-  },
-};
-
-export const Small: Story = {
-  args: {
-    label: "Compact",
-    size: "sm",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    label: "Feature flag",
-    size: "lg",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    label: "Locked setting",
-    disabled: true,
-    checked: true,
-  },
-};
+export const Playground: Story = {};
 
 export const Interactive: Story = {
   render: () => {

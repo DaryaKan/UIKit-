@@ -5,6 +5,55 @@ const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
   tags: ["autodocs"],
+  args: {
+    label: "Email",
+    placeholder: "you@example.com",
+    inputSize: "md",
+    disabled: false,
+    error: "",
+    hint: "",
+  },
+  argTypes: {
+    label: {
+      control: "text",
+      description: "Label shown above the input",
+      table: { category: "Content" },
+    },
+    placeholder: {
+      control: "text",
+      description: "Placeholder text",
+      table: { category: "Content" },
+    },
+    hint: {
+      control: "text",
+      description: "Helper text below the input",
+      table: { category: "Content" },
+    },
+    error: {
+      control: "text",
+      description: "Error message (replaces hint when set)",
+      table: { category: "Validation" },
+    },
+    inputSize: {
+      control: "inline-radio",
+      options: ["sm", "md", "lg"],
+      description: "Input size",
+      table: { category: "Appearance" },
+    },
+    type: {
+      control: "select",
+      options: ["text", "email", "password", "number", "tel", "url"],
+      description: "HTML input type",
+      table: { category: "Appearance" },
+    },
+    disabled: {
+      control: "boolean",
+      description: "Disable the input",
+      table: { category: "State" },
+    },
+    leftAddon: { table: { disable: true } },
+    rightAddon: { table: { disable: true } },
+  },
   decorators: [
     (Story) => (
       <div style={{ width: 320 }}>
@@ -17,10 +66,12 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Default: Story = {
+export const Playground: Story = {};
+
+export const WithError: Story = {
   args: {
-    label: "Email",
-    placeholder: "you@example.com",
+    defaultValue: "invalid",
+    error: "Please enter a valid email",
   },
 };
 
@@ -32,56 +83,12 @@ export const WithHint: Story = {
   },
 };
 
-export const WithError: Story = {
-  args: {
-    label: "Email",
-    placeholder: "you@example.com",
-    defaultValue: "invalid-email",
-    error: "Please enter a valid email address",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    label: "Email",
-    placeholder: "you@example.com",
-    disabled: true,
-    defaultValue: "disabled@example.com",
-  },
-};
-
-export const Small: Story = {
-  args: {
-    label: "Search",
-    placeholder: "Search...",
-    inputSize: "sm",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    label: "Title",
-    placeholder: "Enter title",
-    inputSize: "lg",
-  },
-};
-
-export const WithLeftAddon: Story = {
-  args: {
-    label: "Search",
-    placeholder: "Search...",
-    leftAddon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    ),
-  },
-};
-
-export const Password: Story = {
-  args: {
-    label: "Password",
-    type: "password",
-    placeholder: "Enter password",
-  },
+export const AllSizes: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <Input label="Small" inputSize="sm" placeholder="Small input" />
+      <Input label="Medium" inputSize="md" placeholder="Medium input" />
+      <Input label="Large" inputSize="lg" placeholder="Large input" />
+    </div>
+  ),
 };

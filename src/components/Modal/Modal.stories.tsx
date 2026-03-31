@@ -8,39 +8,60 @@ const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
   tags: ["autodocs"],
-  parameters: {
-    layout: "padded",
+  argTypes: {
+    title: {
+      control: "text",
+      description: "Modal heading",
+      table: { category: "Content" },
+    },
+    size: {
+      control: "inline-radio",
+      options: ["sm", "md", "lg", "xl"],
+      description: "Modal width",
+      table: { category: "Appearance" },
+    },
+    closeOnOverlay: {
+      control: "boolean",
+      description: "Close when clicking the backdrop",
+      table: { category: "Behavior" },
+    },
+    isOpen: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    children: { table: { disable: true } },
+    footer: { table: { disable: true } },
   },
+  parameters: { layout: "padded" },
 };
 
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
-export const Default: Story = {
-  render: () => {
+export const Playground: Story = {
+  render: (args) => {
     const [open, setOpen] = useState(false);
     return (
       <>
         <Button onClick={() => setOpen(true)}>Open Modal</Button>
         <Modal
+          {...args}
           isOpen={open}
           onClose={() => setOpen(false)}
-          title="Modal Title"
           footer={
             <>
-              <Button variant="ghost" onClick={() => setOpen(false)}>
-                Cancel
-              </Button>
+              <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
               <Button onClick={() => setOpen(false)}>Confirm</Button>
             </>
           }
         >
-          <p className="text-gray-600">
-            This is the modal content. You can put anything here.
-          </p>
+          <p className="text-gray-600">Modal content goes here. Use the controls panel to change title, size, and behavior.</p>
         </Modal>
       </>
     );
+  },
+  args: {
+    title: "Modal Title",
+    size: "md",
+    closeOnOverlay: true,
   },
 };
 
@@ -56,9 +77,7 @@ export const WithForm: Story = {
           title="Create New User"
           footer={
             <>
-              <Button variant="ghost" onClick={() => setOpen(false)}>
-                Cancel
-              </Button>
+              <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
               <Button onClick={() => setOpen(false)}>Create</Button>
             </>
           }
@@ -66,7 +85,6 @@ export const WithForm: Story = {
           <div className="flex flex-col gap-4">
             <Input label="Full Name" placeholder="John Doe" />
             <Input label="Email" type="email" placeholder="john@example.com" />
-            <Input label="Role" placeholder="Developer" />
           </div>
         </Modal>
       </>
@@ -79,9 +97,7 @@ export const DangerConfirmation: Story = {
     const [open, setOpen] = useState(false);
     return (
       <>
-        <Button variant="danger" onClick={() => setOpen(true)}>
-          Delete Account
-        </Button>
+        <Button variant="danger" onClick={() => setOpen(true)}>Delete Account</Button>
         <Modal
           isOpen={open}
           onClose={() => setOpen(false)}
@@ -89,45 +105,12 @@ export const DangerConfirmation: Story = {
           size="sm"
           footer={
             <>
-              <Button variant="ghost" onClick={() => setOpen(false)}>
-                Cancel
-              </Button>
-              <Button variant="danger" onClick={() => setOpen(false)}>
-                Delete
-              </Button>
+              <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+              <Button variant="danger" onClick={() => setOpen(false)}>Delete</Button>
             </>
           }
         >
-          <p className="text-gray-600">
-            This action cannot be undone. All of your data will be permanently removed.
-          </p>
-        </Modal>
-      </>
-    );
-  },
-};
-
-export const Large: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-    return (
-      <>
-        <Button onClick={() => setOpen(true)}>Open Large Modal</Button>
-        <Modal
-          isOpen={open}
-          onClose={() => setOpen(false)}
-          title="Terms & Conditions"
-          size="xl"
-          footer={
-            <Button onClick={() => setOpen(false)}>I Agree</Button>
-          }
-        >
-          <div className="text-gray-600 space-y-3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-          </div>
+          <p className="text-gray-600">This action cannot be undone.</p>
         </Modal>
       </>
     );
