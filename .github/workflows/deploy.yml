@@ -1,4 +1,4 @@
-name: Deploy Storybook to GitHub Pages
+name: Deploy UIKit Showcase to GitHub Pages
 
 on:
   push:
@@ -27,11 +27,11 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build-storybook
+      - run: npm run build -- --base=/UIKit-/
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: storybook-static
+          path: dist
 
   deploy:
     needs: build
