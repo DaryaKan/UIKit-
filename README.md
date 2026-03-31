@@ -1,6 +1,6 @@
 # UIKit
 
-A modern React UI component library with Storybook documentation.
+A modern React UI component library with Storybook documentation and a live demo page.
 
 ## Tech Stack
 
@@ -34,19 +34,39 @@ A modern React UI component library with Storybook documentation.
 npm install
 ```
 
-### Run Storybook
+### Run Storybook (interactive component explorer)
 
 ```bash
 npm run storybook
 ```
 
-Storybook will start at [http://localhost:6006](http://localhost:6006).
+Opens at [http://localhost:6006](http://localhost:6006).
 
-### Type Check
+### Run Demo App
 
 ```bash
-npm run typecheck
+npm run dev
 ```
+
+Opens a demo page showcasing all components with live examples.
+
+### Build for Production
+
+```bash
+npm run build              # Build demo app → dist/
+npm run build-storybook    # Build Storybook → storybook-static/
+```
+
+## Deployment
+
+The project includes a **GitHub Actions** workflow (`.github/workflows/deploy.yml`) that automatically deploys Storybook to **GitHub Pages** on every push to `main`.
+
+### Enable GitHub Pages
+
+1. Go to your repo **Settings → Pages**
+2. Under **Source**, select **GitHub Actions**
+3. Push to `main` — the workflow will build and deploy automatically
+4. Your Storybook will be available at `https://<username>.github.io/<repo>/`
 
 ## Usage
 
