@@ -587,7 +587,7 @@ export const componentConfigs: ComponentConfig[] = [
       const count = parseInt(p.itemCount as string);
       const labels = ["Home", "Components", "Docs", "Admin"];
       return (
-        <div className="w-full">
+        <div>
           <Navbar
             brand={
               <div className="flex items-center gap-2">
@@ -629,7 +629,7 @@ export const componentConfigs: ComponentConfig[] = [
       const labels = ["Home", "Search", "Alerts", "Profile", "Settings"];
       const count = parseInt(p.itemCount as string);
       return (
-        <div className="w-80">
+        <div>
           <TabBar
             items={labels.slice(0, count).map((l, i) => ({
               id: l.toLowerCase(),

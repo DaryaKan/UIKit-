@@ -24,7 +24,7 @@ export const TabBar: React.FC<TabBarProps> = ({
   return (
     <nav
       className={clsx(
-        "flex items-center justify-around px-2 py-2 bg-white/15 backdrop-blur-2xl border-t border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_-4px_24px_-4px_rgba(0,0,0,0.1)]",
+        "w-[390px] flex items-center justify-around px-2 py-2 bg-white/15 backdrop-blur-2xl border-t border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_-4px_24px_-4px_rgba(0,0,0,0.1)]",
         className
       )}
     >

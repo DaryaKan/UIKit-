@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       className={clsx(
-        "h-14 flex items-center px-5 gap-6 bg-white/20 backdrop-blur-2xl border-b border-white/20 shadow-[inset_0_-1px_0_rgba(255,255,255,0.1),0_4px_24px_-4px_rgba(0,0,0,0.1)]",
+        "w-[390px] h-14 flex items-center px-5 gap-6 bg-white/20 backdrop-blur-2xl border-b border-white/20 shadow-[inset_0_-1px_0_rgba(255,255,255,0.1),0_4px_24px_-4px_rgba(0,0,0,0.1)]",
         className
       )}
     >

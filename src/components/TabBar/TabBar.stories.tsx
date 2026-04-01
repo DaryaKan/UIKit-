@@ -13,7 +13,7 @@ const meta: Meta<typeof TabBar> = {
   component: TabBar,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-  decorators: [(Story) => <div style={{ maxWidth: 420, margin: "auto" }}><Story /></div>],
+  decorators: [(Story) => <div style={{ margin: "auto" }}><Story /></div>],
 };
 
 export default meta;
