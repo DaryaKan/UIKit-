@@ -18,6 +18,8 @@ import {
   Tabs,
   Tooltip,
   Spinner,
+  Navbar,
+  TabBar,
 } from "../components";
 
 export interface ComponentConfig {
@@ -559,7 +561,7 @@ export const componentConfigs: ComponentConfig[] = [
       },
       { key: "label", label: "Label", type: "text" },
     ],
-    defaults: { size: "md", color: "text-blue-600", label: "" },
+    defaults: { size: "md", color: "text-white", label: "" },
     render: (p) => (
       <Spinner
         size={p.size as any}
@@ -567,5 +569,78 @@ export const componentConfigs: ComponentConfig[] = [
         label={(p.label as string) || undefined}
       />
     ),
+  },
+  {
+    name: "Navbar",
+    icon: "▬",
+    properties: [
+      { key: "brandText", label: "Brand", type: "text" },
+      { key: "itemCount", label: "Items", type: "select", options: [
+        { value: "2", label: "2" },
+        { value: "3", label: "3" },
+        { value: "4", label: "4" },
+      ]},
+      { key: "showBadge", label: "Show Badge", type: "boolean" },
+    ],
+    defaults: { brandText: "UIKit", itemCount: "3", showBadge: true },
+    render: (p) => {
+      const count = parseInt(p.itemCount as string);
+      const labels = ["Home", "Components", "Docs", "Admin"];
+      return (
+        <div className="w-full">
+          <Navbar
+            brand={
+              <div className="flex items-center gap-2">
+                <div className="h-6 w-6 rounded-lg bg-white/30 flex items-center justify-center text-white text-[10px] font-bold border border-white/30">U</div>
+                <span className="text-sm font-semibold text-white">{p.brandText as string}</span>
+              </div>
+            }
+            items={labels.slice(0, count).map((l, i) => ({
+              id: l.toLowerCase(),
+              label: l,
+              badge: p.showBadge && i === count - 1 ? 3 : undefined,
+            }))}
+            activeItem="home"
+          />
+        </div>
+      );
+    },
+  },
+  {
+    name: "TabBar",
+    icon: "⊟",
+    properties: [
+      { key: "itemCount", label: "Items", type: "select", options: [
+        { value: "3", label: "3" },
+        { value: "4", label: "4" },
+        { value: "5", label: "5" },
+      ]},
+      { key: "showBadge", label: "Show Badge", type: "boolean" },
+    ],
+    defaults: { itemCount: "4", showBadge: true },
+    render: (p) => {
+      const icons = [
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" /></svg>,
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>,
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>,
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>,
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+      ];
+      const labels = ["Home", "Search", "Alerts", "Profile", "Settings"];
+      const count = parseInt(p.itemCount as string);
+      return (
+        <div className="w-80">
+          <TabBar
+            items={labels.slice(0, count).map((l, i) => ({
+              id: l.toLowerCase(),
+              label: l,
+              icon: icons[i],
+              badge: p.showBadge && l === "Alerts" ? 5 : undefined,
+            }))}
+            activeItem="home"
+          />
+        </div>
+      );
+    },
   },
 ];

@@ -28,7 +28,7 @@ export const Toggle: React.FC<ToggleProps> = ({
     <label
       className={clsx(
         "inline-flex items-center gap-3",
-        disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+        disabled ? "cursor-not-allowed opacity-40" : "cursor-pointer"
       )}
     >
       <button
@@ -38,23 +38,23 @@ export const Toggle: React.FC<ToggleProps> = ({
         disabled={disabled}
         onClick={() => onChange?.(!checked)}
         className={clsx(
-          "relative inline-flex shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+          "relative inline-flex shrink-0 rounded-full border-2 border-transparent transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
           config.track,
-          checked ? "bg-blue-600" : "bg-gray-200",
+          checked
+            ? "bg-white/50 shadow-[inset_0_1px_2px_rgba(255,255,255,0.5),0_0_12px_rgba(255,255,255,0.2)]"
+            : "bg-white/15",
           !disabled && "cursor-pointer"
         )}
       >
         <span
           className={clsx(
-            "pointer-events-none inline-block rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out",
+            "pointer-events-none inline-block rounded-full bg-white shadow-lg ring-0 transition-transform duration-300",
             config.thumb,
             checked ? config.translate : "translate-x-0"
           )}
         />
       </button>
-      {label && (
-        <span className="text-sm font-medium text-gray-700">{label}</span>
-      )}
+      {label && <span className="text-sm font-medium text-white/90">{label}</span>}
     </label>
   );
 };

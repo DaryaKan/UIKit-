@@ -10,19 +10,7 @@ export interface CardProps {
   className?: string;
 }
 
-const paddingClasses = {
-  none: "",
-  sm: "p-3",
-  md: "p-5",
-  lg: "p-8",
-};
-
-const shadowClasses = {
-  none: "",
-  sm: "shadow-sm",
-  md: "shadow-md",
-  lg: "shadow-lg",
-};
+const paddingClasses = { none: "", sm: "p-3", md: "p-5", lg: "p-8" };
 
 export const Card: React.FC<CardProps> = ({
   children,
@@ -35,12 +23,11 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       className={clsx(
-        "rounded-xl bg-white",
+        "rounded-2xl bg-white/25 backdrop-blur-xl",
         paddingClasses[padding],
-        shadowClasses[shadow],
-        border && "border border-gray-200",
-        hoverable &&
-          "transition-shadow duration-200 hover:shadow-lg cursor-pointer",
+        shadow !== "none" && "glass-inner-shadow",
+        border && "border border-white/30",
+        hoverable && "transition-all duration-300 hover:bg-white/35 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,0.5),0_8px_32px_-8px_rgba(0,0,0,0.2)] cursor-pointer",
         className
       )}
     >
@@ -49,49 +36,21 @@ export const Card: React.FC<CardProps> = ({
   );
 };
 
-export interface CardHeaderProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const CardHeader: React.FC<CardHeaderProps> = ({
-  children,
-  className,
-}) => (
-  <div
-    className={clsx(
-      "border-b border-gray-200 px-5 py-4 font-semibold text-gray-900",
-      className
-    )}
-  >
+export interface CardHeaderProps { children: React.ReactNode; className?: string; }
+export const CardHeader: React.FC<CardHeaderProps> = ({ children, className }) => (
+  <div className={clsx("border-b border-white/20 px-5 py-4 font-semibold text-white", className)}>
     {children}
   </div>
 );
 
-export interface CardBodyProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
+export interface CardBodyProps { children: React.ReactNode; className?: string; }
 export const CardBody: React.FC<CardBodyProps> = ({ children, className }) => (
   <div className={clsx("px-5 py-4", className)}>{children}</div>
 );
 
-export interface CardFooterProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const CardFooter: React.FC<CardFooterProps> = ({
-  children,
-  className,
-}) => (
-  <div
-    className={clsx(
-      "border-t border-gray-200 px-5 py-4 flex items-center gap-3",
-      className
-    )}
-  >
+export interface CardFooterProps { children: React.ReactNode; className?: string; }
+export const CardFooter: React.FC<CardFooterProps> = ({ children, className }) => (
+  <div className={clsx("border-t border-white/20 px-5 py-4 flex items-center gap-3", className)}>
     {children}
   </div>
 );
