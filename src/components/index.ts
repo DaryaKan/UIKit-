@@ -39,3 +39,9 @@ export type { TooltipProps, TooltipPosition } from "./Tooltip";
 
 export { Spinner } from "./Spinner";
 export type { SpinnerProps, SpinnerSize } from "./Spinner";
+
+export { Navbar } from "./Navbar";
+export type { NavbarProps, NavbarItem } from "./Navbar";
+
+export { TabBar } from "./TabBar";
+export type { TabBarProps, TabBarItem } from "./TabBar";
