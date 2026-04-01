@@ -40,6 +40,7 @@ export function App() {
         className="shrink-0 z-10"
       />
 
+      {/* Page content */}
       <div className="flex flex-1 overflow-hidden">
         {page === "showcase" && <ShowcasePage />}
         {page === "request" && <RequestPage onSubmitted={refreshPending} />}
