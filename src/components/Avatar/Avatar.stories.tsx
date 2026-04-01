@@ -5,32 +5,41 @@ const meta: Meta<typeof Avatar> = {
   title: "Components/Avatar",
   component: Avatar,
   tags: ["autodocs"],
+  args: {
+    name: "Darya Kan",
+    size: "md",
+    src: "",
+  },
+  argTypes: {
+    name: {
+      control: "text",
+      description: "User name (used for initials and color)",
+      table: { category: "Content" },
+    },
+    src: {
+      control: "text",
+      description: "Image URL (leave empty for initials)",
+      table: { category: "Content" },
+    },
+    size: {
+      control: "inline-radio",
+      options: ["xs", "sm", "md", "lg", "xl"],
+      description: "Avatar size",
+      table: { category: "Appearance" },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Avatar>;
 
+export const Playground: Story = {};
+
 export const WithImage: Story = {
   args: {
     src: "https://i.pravatar.cc/150?img=32",
     name: "John Doe",
-  },
-};
-
-export const WithInitials: Story = {
-  args: {
-    name: "Darya Kan",
-  },
-};
-
-export const Fallback: Story = {
-  args: {},
-};
-
-export const BrokenImage: Story = {
-  args: {
-    src: "https://invalid-url.com/avatar.jpg",
-    name: "Jane Smith",
+    size: "lg",
   },
 };
 
@@ -49,26 +58,11 @@ export const AllSizes: Story = {
 export const AvatarGroup: Story = {
   render: () => (
     <div className="flex -space-x-3">
-      <Avatar name="Alice Brown" size="md" />
-      <Avatar name="Bob Smith" size="md" />
-      <Avatar name="Charlie Davis" size="md" />
-      <Avatar name="Diana Evans" size="md" />
-      <Avatar name="Edward Fox" size="md" />
-    </div>
-  ),
-};
-
-export const DifferentColors: Story = {
-  render: () => (
-    <div className="flex items-center gap-3">
       <Avatar name="Alice" />
       <Avatar name="Bob" />
       <Avatar name="Charlie" />
       <Avatar name="Diana" />
       <Avatar name="Edward" />
-      <Avatar name="Fiona" />
-      <Avatar name="George" />
-      <Avatar name="Helen" />
     </div>
   ),
 };

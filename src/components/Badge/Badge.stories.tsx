@@ -5,68 +5,49 @@ const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
+  args: {
+    children: "Badge",
+    variant: "primary",
+    size: "md",
+    rounded: false,
+    removable: false,
+  },
+  argTypes: {
+    children: {
+      control: "text",
+      description: "Badge label text",
+      table: { category: "Content" },
+    },
+    variant: {
+      control: "inline-radio",
+      options: ["default", "primary", "success", "warning", "danger", "info"],
+      description: "Color variant",
+      table: { category: "Appearance" },
+    },
+    size: {
+      control: "inline-radio",
+      options: ["sm", "md", "lg"],
+      description: "Badge size",
+      table: { category: "Appearance" },
+    },
+    rounded: {
+      control: "boolean",
+      description: "Pill shape (fully rounded)",
+      table: { category: "Appearance" },
+    },
+    removable: {
+      control: "boolean",
+      description: "Show remove (×) button",
+      table: { category: "Behavior" },
+    },
+    onRemove: { action: "removed", table: { category: "Events" } },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-export const Default: Story = {
-  args: {
-    children: "Badge",
-  },
-};
-
-export const Primary: Story = {
-  args: {
-    children: "New",
-    variant: "primary",
-  },
-};
-
-export const Success: Story = {
-  args: {
-    children: "Active",
-    variant: "success",
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    children: "Pending",
-    variant: "warning",
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    children: "Error",
-    variant: "danger",
-  },
-};
-
-export const Info: Story = {
-  args: {
-    children: "Beta",
-    variant: "info",
-  },
-};
-
-export const Rounded: Story = {
-  args: {
-    children: "Pill",
-    variant: "primary",
-    rounded: true,
-  },
-};
-
-export const Removable: Story = {
-  args: {
-    children: "React",
-    variant: "primary",
-    removable: true,
-    rounded: true,
-  },
-};
+export const Playground: Story = {};
 
 export const AllVariants: Story = {
   render: () => (
@@ -81,26 +62,24 @@ export const AllVariants: Story = {
   ),
 };
 
+export const PillTags: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      {["React", "TypeScript", "Tailwind", "Vite", "Storybook"].map((tag) => (
+        <Badge key={tag} variant="primary" rounded removable>
+          {tag}
+        </Badge>
+      ))}
+    </div>
+  ),
+};
+
 export const AllSizes: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <Badge size="sm" variant="primary">Small</Badge>
       <Badge size="md" variant="primary">Medium</Badge>
       <Badge size="lg" variant="primary">Large</Badge>
-    </div>
-  ),
-};
-
-export const TagCloud: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2">
-      {["React", "TypeScript", "Tailwind", "Vite", "Storybook", "Node.js"].map(
-        (tag) => (
-          <Badge key={tag} variant="primary" rounded removable>
-            {tag}
-          </Badge>
-        )
-      )}
     </div>
   ),
 };

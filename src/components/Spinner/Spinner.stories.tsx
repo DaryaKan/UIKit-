@@ -5,44 +5,48 @@ const meta: Meta<typeof Spinner> = {
   title: "Components/Spinner",
   component: Spinner,
   tags: ["autodocs"],
+  args: {
+    size: "md",
+    color: "text-blue-600",
+    label: "",
+  },
+  argTypes: {
+    size: {
+      control: "inline-radio",
+      options: ["sm", "md", "lg", "xl"],
+      description: "Spinner size",
+      table: { category: "Appearance" },
+    },
+    color: {
+      control: "select",
+      options: [
+        "text-blue-600",
+        "text-gray-600",
+        "text-green-600",
+        "text-red-600",
+        "text-purple-600",
+        "text-amber-600",
+      ],
+      description: "Spinner color (Tailwind text color class)",
+      table: { category: "Appearance" },
+    },
+    label: {
+      control: "text",
+      description: "Text shown below the spinner",
+      table: { category: "Content" },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Spinner>;
 
-export const Default: Story = {
-  args: {},
-};
-
-export const Small: Story = {
-  args: {
-    size: "sm",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: "lg",
-  },
-};
-
-export const ExtraLarge: Story = {
-  args: {
-    size: "xl",
-  },
-};
+export const Playground: Story = {};
 
 export const WithLabel: Story = {
   args: {
     size: "lg",
-    label: "Loading...",
-  },
-};
-
-export const CustomColor: Story = {
-  args: {
-    size: "lg",
-    color: "text-purple-600",
+    label: "Loading data...",
   },
 };
 
